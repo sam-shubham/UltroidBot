@@ -16,7 +16,7 @@ async def stopresumevc(event):
         return await event.answer(
             "You are Not Authorised to Use Me !"
         )
-    match = event.pattern_match.group(1).split("_")
+    match = event.pattern_match.group(1).decode("UTF-8").split("_")
     chat = int(match[1])
     if match[0] == "r":
         CallsClient.resume_stream(chat)
@@ -39,7 +39,7 @@ async def skipstream(event):
         return await event.answer(
             "You are Not Authorised to Use Me !"
         )
-    match = event.pattern_match.group(1)
+    match = event.pattern_match.group(1).decode("UTF-8")
     await event.answer("Skipped !", alert=True)
     await event.delete()
     await queue_func(int(match))
@@ -51,7 +51,7 @@ async def exit_vc(event):
         return await event.answer(
             "You are Not Authorised to Use Me !"
     )
-    match = event.pattern_match.group(1)
+    match = event.pattern_match.group(1).decode("UTF-8")
     if int(match) not in CallsClient.active_calls.keys():
         return await event.delete()
     QUEUE.pop(int(match))
