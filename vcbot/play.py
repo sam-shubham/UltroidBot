@@ -20,7 +20,8 @@ async def startup(event):
     msg = await eor(event, get_string("com_1"))
     song = event.text.split(" ", maxsplit=1)
     reply = await event.get_reply_message()
-
+    if len(event.text) > 4 and event.text[5] == "f":
+        return
     if len(song) > 1 and song[1].startswith("@" or "-"):
         song = song[1].split(" ", maxsplit=1)
         chat = await Client.get_chat(song[0])
