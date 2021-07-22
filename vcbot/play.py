@@ -66,8 +66,8 @@ async def startup(event):
             return await msg.edit(str(E))
     if thumb:
         await msg.delete()
-        msg = await reply_photo(
-            thumb,
+        msg = await reply_photo(event,
+            file=thumb,
             caption=f"🎸 **Playing :** {song_name}\n**☘ Duration :** {time_formatter(duration*1000)}\n👤 **Requested By :** {from_user}",
             buttons=reply_markup(chat.id),
         )
